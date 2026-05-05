@@ -357,7 +357,11 @@ function renderRecommendations(items) {
 
 function renderActiveTab() {
   if (state.activeTab === "probe") {
-    renderRecommendations(state.probeRecommendations);
+    if (state.probeRecommendations.length > 0) {
+      renderRecommendations(state.probeRecommendations);
+    } else {
+      renderRecommendationHint();
+    }
   } else {
     renderRecommendations(state.recommendations);
   }
@@ -556,4 +560,5 @@ dictionaryInput.value = Array.isArray(window.DEFAULT_WORDS) && window.DEFAULT_WO
   : sampleWords.join("\n");
 addRow();
 applyDictionary();
+state.recommendations = INITIAL_RECOMMENDATIONS;
 renderRecommendations(INITIAL_RECOMMENDATIONS);
