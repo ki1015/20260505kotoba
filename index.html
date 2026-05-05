@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ことのはたんごバスター</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>ことのはたんごバスター</h1>
+        <p>判定結果を入れると、候補と次の一手を計算します。</p>
+      </div>
+      <div class="stat">
+        <span id="candidateCount">0</span>
+        <small>候補</small>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>入力履歴</h2>
+        <div class="button-group">
+          <button id="solve" type="button">再計算</button>
+          <button id="clearRows" type="button">クリア</button>
+        </div>
+      </div>
+      <div id="rows" class="rows"></div>
+      <button id="addRow" class="ghost" type="button">行を追加</button>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>使えない文字</h2>
+        <button id="clearManualDeadLetters" type="button">追加分を消去</button>
+      </div>
+      <label class="field-label" for="manualDeadLetters">自分で追加</label>
+      <input id="manualDeadLetters" class="letter-input" placeholder="例: アイウエオ">
+      <div class="letter-summary">
+        <span>履歴から確定</span>
+        <strong id="confirmedDeadLetters">なし</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>おすすめ</h2>
+        <div class="tab-group">
+          <button id="tabAnswer" class="tab-btn active" type="button">当てに行く</button>
+          <button id="tabProbe" class="tab-btn" type="button">候補を消す</button>
+        </div>
+      </div>
+      <div id="recommendations" class="recommendations"></div>
+    </section>
+
+    <details class="panel dictionary-panel">
+      <summary>高度な設定・辞書</summary>
+      <div class="advanced-body">
+        <div class="panel-title">
+          <h2>辞書</h2>
+          <button id="loadSample" type="button">サンプル</button>
+        </div>
+        <label class="file-loader">
+          <span>辞書ファイルを読み込む</span>
+          <input id="dictionaryFile" type="file" accept=".txt,.csv,text/plain,text/csv">
+        </label>
+        <textarea id="dictionaryInput" spellcheck="false" placeholder="5文字の単語を1行に1つずつ貼り付けます&#10;例:&#10;ひるごはん&#10;あさごはん&#10;ユウショク"></textarea>
+        <div class="toolbar">
+          <button id="applyDictionary" type="button">辞書を反映</button>
+          <label class="toggle">
+            <input id="allowAllGuesses" type="checkbox" checked>
+            <span>候補外の語も探索に使う</span>
+          </label>
+          <label class="toggle">
+            <input id="useAnswerOnly" type="checkbox">
+            <span>正解候補だけに絞る</span>
+          </label>
+        </div>
+      </div>
+    </details>
+  </main>
+
+  <template id="rowTemplate">
+    <div class="guess-row">
+      <input class="word-input" maxlength="5" placeholder="5文字のことばを入力">
+      <div class="char-tiles">
+        <button type="button" class="char-tile" data-mark="n"></button>
+        <button type="button" class="char-tile" data-mark="n"></button>
+        <button type="button" class="char-tile" data-mark="n"></button>
+        <button type="button" class="char-tile" data-mark="n"></button>
+        <button type="button" class="char-tile" data-mark="n"></button>
+      </div>
+      <button class="remove-row" type="button" aria-label="行を削除">×</button>
+    </div>
+  </template>
+
+  <script src="wordlist_5kana.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

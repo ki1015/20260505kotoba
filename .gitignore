@@ -1,0 +1,4 @@
+.claude/
+*.csv
+*.txt
+build_wordlist.js
