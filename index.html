@@ -21,18 +21,6 @@
 
     <section class="panel">
       <div class="panel-title">
-        <h2>入力履歴</h2>
-        <div class="button-group">
-          <button id="solve" type="button">再計算</button>
-          <button id="clearRows" type="button">クリア</button>
-        </div>
-      </div>
-      <div id="rows" class="rows"></div>
-      <button id="addRow" class="ghost" type="button">行を追加</button>
-    </section>
-
-    <section class="panel">
-      <div class="panel-title">
         <h2>使えない文字</h2>
         <button id="clearManualDeadLetters" type="button">追加分を消去</button>
       </div>
@@ -41,6 +29,18 @@
       <div class="letter-summary">
         <span>履歴から確定</span>
         <strong id="confirmedDeadLetters">なし</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>入力履歴</h2>
+        <button id="clearRows" type="button">クリア</button>
+      </div>
+      <div id="rows" class="rows"></div>
+      <div class="row-actions">
+        <button id="addRow" class="ghost" type="button">行を追加</button>
+        <button id="solve" type="button">再計算</button>
       </div>
     </section>
 
