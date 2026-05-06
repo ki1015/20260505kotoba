@@ -79,8 +79,10 @@ function selectWord(word) {
 
 function normalizeKana(value) {
   return Array.from(value.trim()).map((char) => {
-    const index = hiragana.indexOf(char);
-    return index >= 0 ? katakana[index] : char;
+    const hIndex = hiragana.indexOf(char);
+    if (hIndex >= 0) return katakana[hIndex];
+    if (katakana.includes(char)) return char;
+    return "";
   }).join("");
 }
 
